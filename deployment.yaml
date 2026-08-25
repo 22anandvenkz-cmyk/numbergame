@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: number-game
+
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: number-game
+
+  template:
+    metadata:
+      labels:
+        app: number-game
+
+    spec:
+      containers:
+        - name: number-game
+          image: number-game:latest
+
+          ports:
+            - containerPort: 5000
+
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
